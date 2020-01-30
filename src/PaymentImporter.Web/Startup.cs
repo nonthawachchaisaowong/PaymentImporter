@@ -1,8 +1,5 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutoMapper;
-using PaymentImporter.Infrastructure.Data.EntityFramework;
-using PaymentImporter.Ioc;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PaymentImporter.Infrastructure.Data.EntityFramework;
+using PaymentImporter.Ioc;
 using System;
 
 namespace PaymentImporter.Web
@@ -35,19 +34,13 @@ namespace PaymentImporter.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddAutoMapper();
+            });    
      
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>()); ;
 
             // Now register our services with Autofac container.
-
-
-            var builder = new ContainerBuilder();
-            
+            var builder = new ContainerBuilder();            
             builder.RegisterModule(new DependencyInjection());
-
             builder.Populate(services);
             var container = builder.Build();
             // Create the IServiceProvider based on the container.
@@ -71,9 +64,7 @@ namespace PaymentImporter.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
