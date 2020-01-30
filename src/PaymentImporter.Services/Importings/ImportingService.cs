@@ -38,26 +38,7 @@ namespace PaymentImporter.Services.Importings
         #endregion
 
         #region Method
-        private IList<TransactionFileRecordDto> GetTransactionFileRecords(Stream stream, ImportFileType fileType)
-        {
-            DataParser dataParser;
-
-            switch (fileType)
-            {
-                case ImportFileType.Csv:
-                    {
-                        dataParser = new CsvDataParser();
-                        return dataParser.ParseTransactions(stream);
-                    }
-                case ImportFileType.Xml:
-                    {
-                        dataParser = new XmlDataParser();
-                        return dataParser.ParseTransactions(stream);
-                    }
-                default:
-                    return null;
-            }
-        }
+        
         public bool IsValidFileLength(long fileLength)
         {
             // TODO: Must store in configuration file
@@ -72,7 +53,7 @@ namespace PaymentImporter.Services.Importings
 
         public int Import(Stream stream, ImportFileType fileType)
         {
-            var allTransactionFileRecords = GetTransactionFileRecords(stream, fileType);
+            var allTransactionFileRecords = DataParserFactory.GetTransactionFileRecords(stream, fileType);
 
             IList<string> messages = new List<string>();
 
