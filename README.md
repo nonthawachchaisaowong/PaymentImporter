@@ -1,7 +1,7 @@
 ## Project overview
 
 This project created with ASP.Net Core, Entity framework, Generic repository pattern for uploading CSV or XML file to SQL database.
-The application will contain upload page and also provide API to get transaction data.
+The application will contain an upload page and also provide API to get transaction data. Can use example upload files in the resources folder for testing.
 
 
 ## Setup project
