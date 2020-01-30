@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentImporter.Core\PaymentImporter.Core.csproj" />
+    <ProjectReference Include="..\PaymentImporter.Infrastructure\PaymentImporter.Infrastructure.csproj" />
+    <ProjectReference Include="..\PaymentImporter.Services\PaymentImporter.Services.csproj" />
+  </ItemGroup>
+
+</Project>
